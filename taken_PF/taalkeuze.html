@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Taalkeuze</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            window.onload = function () {
+                var eLinks = document.querySelectorAll('#taalkeuze a');
+                if (localStorage) {
+                    if (localStorage.taal && !localStorage.keuze) {
+                        console.log('redirect');
+                        for (var i = 0; i < eLinks.length; i++){
+                            if (eLinks[i].innerHTML === localStorage.taal){
+                               eLinks[i].click();
+                            }
+                        }
+                    } else {
+                        for (var i = 0; i < eLinks.length; i++) {
+                            eLinks[i].addEventListener('click', function (e) {
+                                saveLanguage(this.innerHTML);
+                            });
+                        }
+                    }
+                }
+
+            };
+
+
+            function saveLanguage(sTaal) {
+                localStorage.setItem('taal', sTaal);
+            }
+        </script>
+    </head>    
+    <body>
+        <div id="taalkeuze">
+            <a href="nederlands.html">Nederlands</a> 
+            <a href="english.html">English</a> 
+            <a href="francais.html">Francais</a>
+        </div>
+    </body>
+</html>

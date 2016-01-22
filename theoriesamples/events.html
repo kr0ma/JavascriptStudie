@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #outer{
+                width: 300px;
+                height:300px;
+                border:1px dotted blue;
+            }
+            #inner{
+                width: 100px;
+                height:100px;
+                border:1px dashed red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <section id="test">
+            <div id="outer">
+                <div id="inner"></div>
+            </div>
+        </section>
+        <script type="text/javascript">
+            var outer = document.getElementById('outer');
+            var inner = document.getElementById('inner');
+            outer.addEventListener('mouseover', hoverOut);
+            outer.addEventListener('mouseout', hoverOut);
+            function hover(e) {
+                displayEventInfo(e);
+                this.style.backgroundColor = "orange";
+            }
+            function hoverOut(e) {//this test
+                displayEventInfo(e);
+                this.style.backgroundColor = "yellow";
+            }
+            function displayEventInfo(evt) {
+                if (evt) {
+                    txt = "type: " + evt.type + "\n";
+                    txt += "eventPhase: " + evt.eventPhase + "\n";
+                    txt += "cancelable: " + evt.cancelable + "\n";
+                    txt += "bubbles: " + evt.bubbles + "\n";
+                    txt += "timeStamp: " + evt.timeStamp + "\n";
+                    txt += "target: " + evt.target.nodeName + ", id: " + evt.target.id + "\n";
+                    if (evt.currentTarget)
+                        txt += "currentTarget: " + evt.currentTarget.nodeName +
+                                ", id: " + evt.currentTarget.id + "\n";
+                    if (evt.relatedTarget)
+                        txt += "relatedTarget: " + evt.relatedTarget.nodeName +
+                                ", id: " + evt.relatedTarget.id + "\n";
+                } else {
+                    txt = "non‐W3C Event Model";
+                }
+                console.log(txt);
+            }
+
+        </script>
+    </body>
+</html>
